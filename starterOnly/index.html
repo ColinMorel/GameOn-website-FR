@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <title>Reservation</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="stylesheet" href="modal.css" />
+    <link rel="stylesheet" href="styles/modal.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link
       href="https://fonts.googleapis.com/css?family=DM+Sans"
@@ -14,21 +14,17 @@
   <body>
     <div class="topnav" id="myTopnav">
       <div class="header-logo">
-      <img alt="logo" src="Logo.png" width="auto" height="auto" />
+        <img alt="logo" src="assets/Logo.png" width="auto" height="auto"/>
+      </div>
+      <div class="main-navbar">      
+        <a id="navBarLink0" href="#" onclick="return navBarFunction(id)"><span>Accueil</span></a>
+        <a id="navBarLink1" href="#" onclick="return navBarFunction(id)"><span>Détails de l'évènement</span></a>
+        <a id="navBarLink2" href="#" onclick="return navBarFunction(id)"><span>À propos</span></a>
+        <a id="navBarLink3" href="#" onclick="return navBarFunction(id)"><span>Contact</span></a>
+        <a id="navBarLink4" href="#" onclick="return navBarFunction(id)"><span>Évènements passés</span></a>
+        <!-- <a href="javascript:void(0);" class="icon" onclick="editNav()"> <i class="fa fa-bars"></i> </a> -->
+      </div>
     </div>
-    <div class="main-navbar">
-      
-      <a href="#" class="active"><span>Accueil</span></a>
-      <a href="#"><span>Détails de l'évènement</span></a>
-      <a href="#"><span>À propos</span></a>
-      <a href="#"><span>Contact</span></a>
-      <a href="#"><span>Évènements passés</span></a>
-      <a href="javascript:void(0);" class="icon" onclick="editNav()">
-        <i class="fa fa-bars"></i>
-      </a>
-    </div>
-    </div>
-  </div>
     <main>
       <div class="hero-section">
         <div class="hero-content">
@@ -45,149 +41,90 @@
           </button>
         </div>
         <div class="hero-img">
-          <img src="./bg_img.jpg" alt="img" />
+          <img src="assets/bg_img.jpg" alt="img" />
         </div>
-        <button class="btn-signup modal-btn">
-          je m'inscris
-        </button>
       </div>
 
       <div class="bground">
         <div class="content">
           <span class="close"></span>
           <div class="modal-body">
-            <form
-              name="reserve"
-              action="index.html"
-              method="get"
-              onsubmit="return validate();"
-            >
-              <div
-                class="formData">
+            <form id="form" name="reserve" action="index.html" method="get" onsubmit="return validate();">
+              <div class="formData">
                 <label>Prénom</label><br>
-                <input
-                  class="text-control"
-                  type="text"
-                  id="first"
-                  name="first"
-                  minlength="2"
-                /><br>
+                <input class="text-control" type="text" id="first" name="first" oninput="return firstValidate();" />
               </div>
-              <div
-                class="formData">
+              <div id="errorFirst"></div>
+
+              <div class="formData">
                 <label>Nom</label><br>
-                <input
-                  class="text-control"
-                  type="text"
-                  id="last"
-                  name="last"
-                /><br>
+                <input class="text-control" type="text" id="last" name="last" oninput="return lastValidate();"/>
               </div>
-              <div
-                class="formData">
+              <div id="errorLast"></div>
+
+              <div class="formData">
                 <label>E-mail</label><br>
-                <input
-                  class="text-control"
-                  type="email"
-                  id="email"
-                  name="email"
-                /><br>
+                <input class="text-control" type="email" id="email" name="email" oninput="return emailValidate();"/>
               </div>
-              <div
-                class="formData">
+              <div id="errorEmail"></div>
+
+              <div class="formData">
                 <label>Date de naissance</label><br>
-                <input
-                  class="text-control"
-                  type="date"
-                  id="birthdate"
-                  name="birthdate"
-                /><br>
+                <input class="text-control" type="date" id="birthdate" name="birthdate" oninput="return birthdateValidate()"/>
               </div>
-              <div
-                class="formData">
+              <div id="errorBirthdate"></div>
+
+              <div class="formData">
                 <label>À combien de tournois GameOn avez-vous déjà participé ?</label><br>
-                <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
+                <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99" oninput="return tournamentQuantityValidate()" >
               </div>
-              <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
-              <div
-                class="formData">
-                <input
-                  class="checkbox-input"
-                  type="radio"
-                  id="location1"
-                  name="location"
-                  value="New York"
-                />
+              <div id="errorQuantity"></div>
+
+              <div class="formData">
+                <label id="whichTournament">A quel tournoi souhaitez-vous participer cette année ?</label>
+
+                <input class="checkbox-input" type="radio" id="location1" name="location" value="New York" onclick="return whichTournamentValidate();"/>
                 <label class="checkbox-label" for="location1">
                   <span class="checkbox-icon"></span>
-                  New York</label
-                >
-                <input
-                  class="checkbox-input"
-                  type="radio"
-                  id="location2"
-                  name="location"
-                  value="San Francisco"
-                />
+                  New York
+                </label>
+
+                <input class="checkbox-input" type="radio" id="location2" name="location" value="San Francisco" onclick="return whichTournamentValidate();"/>
                 <label class="checkbox-label" for="location2">
                   <span class="checkbox-icon"></span>
-                  San Francisco</label
-                >
-                <input
-                  class="checkbox-input"
-                  type="radio"
-                  id="location3"
-                  name="location"
-                  value="Seattle"
-                />
+                  San Francisco
+                </label>
+                
+                <input class="checkbox-input" type="radio" id="location3" name="location" value="Seattle" onclick="return whichTournamentValidate();"/>
                 <label class="checkbox-label" for="location3">
                   <span class="checkbox-icon"></span>
-                  Seattle</label
-                >
-                <input
-                  class="checkbox-input"
-                  type="radio"
-                  id="location4"
-                  name="location"
-                  value="Chicago"
-                />
+                  Seattle
+                </label>             
+
+                <input class="checkbox-input" type="radio" id="location4" name="location" value="Chicago" onclick="return whichTournamentValidate();"/>
                 <label class="checkbox-label" for="location4">
                   <span class="checkbox-icon"></span>
-                  Chicago</label
-                >
-                <input
-                  class="checkbox-input"
-                  type="radio"
-                  id="location5"
-                  name="location"
-                  value="Boston"
-                />
+                  Chicago
+                </label>  
+
+                <input class="checkbox-input" type="radio" id="location5" name="location" value="Boston" onclick="return whichTournamentValidate();"/>
                 <label class="checkbox-label" for="location5">
                   <span class="checkbox-icon"></span>
-                  Boston</label
-                >
-                <input
-                  class="checkbox-input"
-                  type="radio"
-                  id="location6"
-                  name="location"
-                  value="Portland"
-                />
+                  Boston
+                </label>
+                
+                <input class="checkbox-input" type="radio" id="location6" name="location" value="Portland" onclick="return whichTournamentValidate();"/>
                 <label class="checkbox-label" for="location6">
                   <span class="checkbox-icon"></span>
-                  Portland</label
-                >
+                  Portland
+                </label>
               </div>
+              <div id="errorWhichTournament"></div>
 
               <div
                 class="formData">
-                <input
-                  class="checkbox-input"
-                  type="checkbox"
-                  id="checkbox1"
-                  checked
-                />
-                <label class="checkbox2-label" for="checkbox1" required>
+                <input class="checkbox-input" type="checkbox" id="checkbox1"  onclick="return CGUValidate();" />
+                <label class="checkbox2-label" for="checkbox1" id="checkbox1Label" required>
                   <span class="checkbox-icon"></span>
                   J'ai lu et accepté les conditions d'utilisation.
                 </label>
@@ -195,20 +132,28 @@
                 <input class="checkbox-input" type="checkbox" id="checkbox2" />
                 <label class="checkbox2-label" for="checkbox2">
                   <span class="checkbox-icon"></span>
-                  Je Je souhaite être prévenu des prochains évènements.
+                  Je souhaite être prévenu des prochains évènements.
                 </label>
                 <br>
               </div>
+              <div id="errorChebox1"></div>
               <input
-                class="btn-submit"
+                class="btn-submit button"
                 type="submit"
-                class="button"
-                value="C'est parti"
+                value="Valider le formulaire"
               />
             </form>
           </div>
+        </div>        
+      </div>
+      <div class="bground2">
+        <div class="content">
+          <span class="close2"></span>
+          <h1 class="bground2Title">Merci pour votre inscription !</h1>
+          <button class="button closeBtn"> Fermer </button>
         </div>
       </div>
+
     </main>
     <footer>
       <p class="copyrights">

@@ -1,9 +1,9 @@
-:root {
+:root{
   --font-default: "DM Sans", Arial, Helvetica, sans-serif;
   --font-slab: var(--font-default);
   --modal-duration: 0.8s;
 }
-* {
+*{
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -14,7 +14,7 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
-  background-image: url("background.png");
+  /* background-image: url("/background.png"); */
   font-family: var(--font-default);
   font-size: 18px;
   max-width: 1300px;
@@ -40,6 +40,7 @@ img {
 .main-navbar {
     float: right;
 }
+
 .topnav a {
   float: left;
   display: block;
@@ -102,6 +103,7 @@ img {
 } 
 
 main {
+  height: 70vh;
   font-size: 130%;
   font-weight: bolder;
   color: black;
@@ -111,8 +113,6 @@ main {
   margin: 1px 20px 15px;
   border-radius: 2rem;
   text-align: justify;
-
-
 }
 
 .modal-btn {
@@ -139,6 +139,11 @@ main {
 
 /* Modal form */
 
+.formData{
+  margin-bottom: 10px;
+}
+
+
 .button {
   background: #fe142f;
   margin-top: 0.5em;
@@ -153,11 +158,13 @@ main {
   background: #3876ac;
 }
 
+
 .smFont {
   font-size: 16px;
 }
 
-.bground {
+.bground,
+.bground2 {
   display: none;
   position: fixed;
   z-index: 1;
@@ -169,10 +176,24 @@ main {
   background-color: rgba(26, 39, 156, 0.4);
 }
 
+/* Popup de fin de formulaire, fermer le popup*/
+
+.bground2{
+  text-align: center;
+}
+.bground2Title{
+  padding: 15px 8%;
+  margin: 15px auto;
+}
+.bground2 button{
+  border:none;
+  margin:20px;
+}
+
 .content {
   margin: 5% auto;
   width: 100%;
-  max-width: 500px;
+  max-width:600px;
   animation-name: modalopen;
   animation-duration: var(--modal-duration);
   background: #232323;
@@ -256,8 +277,8 @@ input[data-error]::after {
 .checkbox-label .checkbox-icon::after,
 .checkbox2-label .checkbox-icon::after {
   content: "";
-  width: 13px;
-  height: 13px;
+  width: 12px;
+  height: 12px;
   background-color: #279e7a;
   border-radius: 50%;
   text-indent: 29px;
@@ -266,7 +287,7 @@ input[data-error]::after {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  transition: 0.3s;
+  transition: 0.3s;  
   opacity: 0;
 }
 .checkbox-input {
@@ -296,7 +317,8 @@ input[data-error]::after {
   left: 21%;
   top: 19%;
 }
-.close {
+.close,
+.close2 {
   position: absolute;
   right: 15px;
   top: 15px;
@@ -307,7 +329,9 @@ input[data-error]::after {
   transform: scale(0.7);
 }
 .close:before,
-.close:after {
+.close:after,
+.close2:before,
+.close2:after {
   position: absolute;
   left: 15px;
   content: " ";
@@ -315,10 +339,12 @@ input[data-error]::after {
   width: 3px;
   background-color: #fff;
 }
-.close:before {
+.close:before,
+.close2:before {
   transform: rotate(45deg);
 }
-.close:after {
+.close:after,
+.close2:after {
   transform: rotate(-45deg);
 }
 .btn-submit,
@@ -328,7 +354,8 @@ input[data-error]::after {
   margin: 0 auto;
   border-radius: 7px;
   font-size: 1rem;
-  padding: 12px 82px;
+  width: fit-content;
+  padding: 12px 22px;
   color: #fff;
   cursor: pointer;
   border: 0;
@@ -405,7 +432,7 @@ input[data-error]::after {
   font-size: 16px;
 }
 .hero-section {
-  min-height: 93vh;
+  max-height: 100%;
   border-radius: 10px;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -491,9 +518,6 @@ footer {
   .hero-content::after {
     content: unset;
   }
-  .hero-content .btn-signup {
-    display: none;
-  }
   .hero-headline {
     font-size: 4.5rem;
     white-space: normal;
@@ -525,5 +549,70 @@ footer {
   to {
     opacity: 1;
   }
+}
+
+@media screen and (max-width: 1111px) {
+  .topnav a{
+    font-size:18px;
+  }
+}
+@media screen and (max-width: 1051px) {
+  .topnav a{
+    font-size:16px;
+  }
+}
+
+@media screen and (max-width: 980px) {
+  .topnav{
+    display: flex;
+    flex-direction: column;
+  }
+  .hero-headline{
+    font-size: 4rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  main{
+    height: fit-content;
+  }
+}
+
+@media screen and (max-width:400px){
+  .content{
+    margin: 0;
+    height: 100%;
+  }
+  .modal-body{
+    margin: 0;
+  }
+  .btn-submit{
+    padding-bottom: 20px;
+  }
+}
+
+@media screen and (max-width:350px){
+  .content{
+    height: fit-content;
+  }
+}
+
+.errorEditIfError{
+  color: red;
+  padding-bottom: 10px;
+  font-size: 0.4em;
+  font-weight: 100;
+}
+
+.errorEditTextRed{
+  color: red;
+}
+
+.errorEditBorderRed{
+  border: solid red 1px;
+}
+
+.errorEditIfNoError{
+  display: none;
 }
 
