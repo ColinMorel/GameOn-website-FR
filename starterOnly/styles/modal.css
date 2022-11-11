@@ -551,8 +551,10 @@ footer {
   }
 }
 
+/* Tablette en mode paysage */
 @media screen and (max-width: 1111px) {
   .topnav a{
+    margin-top: 20px;
     font-size:18px;
   }
 }
@@ -567,6 +569,9 @@ footer {
     display: flex;
     flex-direction: column;
   }
+  .hero-section{
+    margin-top: 20px;
+  }
   .hero-headline{
     font-size: 4rem;
   }
@@ -574,7 +579,40 @@ footer {
 
 @media screen and (max-width: 768px) {
   main{
+    max-height: 95vh;
     height: fit-content;
+  }
+  footer{
+    height: 5vh;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  body{
+    height: 100vh;
+  }
+  .hero-section{
+    margin-top: 20px;
+    width: 90vw;
+  }
+  .hero-content{
+    padding: 0;
+    width: fit-content;
+    min-width: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero-headline{
+    width: 100%;
+    font-size: 2rem;
+    font-weight: 600;
+  }
+  .hero-text{
+    font-size: 0.95rem;
+    width: 100%;
+    min-width: 100px;
+    margin: 10px 0;
   }
 }
 
