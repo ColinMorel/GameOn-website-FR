@@ -190,7 +190,8 @@ main {
   margin:20px;
 }
 
-.content {
+.content,
+.content2 {
   margin: 5% auto;
   width: 100%;
   max-width:600px;
@@ -613,6 +614,18 @@ footer {
     width: 100%;
     min-width: 100px;
     margin: 10px 0;
+  }
+  .content2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+    margin-top: 15%;
+  }
+  .closeBtn{
+    position: absolute;
+    bottom: 0;
   }
 }
 

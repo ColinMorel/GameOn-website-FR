@@ -21,6 +21,13 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 // launch modal form
 function launchModal() {
   modalbg.style.display = "block";
+  firstValidate();
+  lastValidate();
+  emailValidate();
+  birthdateValidate();
+  tournamentQuantityValidate();
+  whichTournamentValidate();
+  CGUValidate();  
 }
 
 function launchThanksModal() {
@@ -233,6 +240,17 @@ function navBarFunction(idClicked){
   }
   let whichLinkClicked = document.getElementById(idClicked);
   whichLinkClicked.classList.add("active");  
+}
+
+function locationCheckboxFunction(idLocation){
+  idClicked = idLocation.slice(8)-1;
+  let locationCheckboxTab = document.querySelectorAll(".formData .location-checkbox");
+  for(let i=0;i<locationCheckboxTab.length;i++){
+    locationCheckboxTab[i].checked=false;
+  }
+  locationCheckboxTab[idClicked].checked = true;
+
+  whichTournamentValidate(idClicked);
 }
 
 
