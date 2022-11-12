@@ -127,7 +127,7 @@ function validate(){
 }
 
 //Factorisation de la fonction d'erreur sur mes inputs
-function errorEditIf(errorDivStyle,errorDivTextOrBorder,errorMessage,errorTextPossible){
+function errorEditIfError(errorDivStyle,errorDivTextOrBorder,errorMessage,errorTextPossible){
   errorDivStyle.innerText=errorMessage;
   errorDivStyle.classList.add("errorEditIfError");
   if(errorTextPossible){
@@ -135,7 +135,7 @@ function errorEditIf(errorDivStyle,errorDivTextOrBorder,errorMessage,errorTextPo
   }
   else{errorDivTextOrBorder.classList.add("errorEditBorderRed")}
 }
-function errorEditElse(errorDivStyle,errorDivTextOrBorder,errorTextPossible){
+function errorEditElseNoError(errorDivStyle,errorDivTextOrBorder,errorTextPossible){
   errorDivStyle.innerText="";
   errorDivStyle.classList.add("errorEditIfNoError");
   if(errorTextPossible){
@@ -148,11 +148,11 @@ function errorEditElse(errorDivStyle,errorDivTextOrBorder,errorTextPossible){
 function firstValidate(){  
   if(firstName.value.length<2 || firstName.value =="" || firstName.value==null||!firstName.value.match(namesRegex)){
     errorMessage = "Veuillez rentrer au minimum 2 lettres pour le prénom";
-    errorEditIf(errorFirst,firstName,errorMessage);
+    errorEditIfError(errorFirst,firstName,errorMessage);
     firstChecked=false;
   }
   else{
-    errorEditElse(errorFirst,firstName);
+    errorEditElseNoError(errorFirst,firstName);
     firstChecked=true;
   }
 }
@@ -160,11 +160,11 @@ function firstValidate(){
 function lastValidate(){  
   if(lastName.value.length<2 || lastName.value =="" || lastName.value==null||!lastName.value.match(namesRegex)){
     errorMessage ="Veuillez rentrer au minimum 2 lettres pour le nom ";
-    errorEditIf(errorLast,lastName,errorMessage);
+    errorEditIfError(errorLast,lastName,errorMessage);
     lastChecked=false;
   }
   else{
-    errorEditElse(errorLast,lastName);
+    errorEditElseNoError(errorLast,lastName);
     lastChecked=true;
   }
 }
@@ -172,11 +172,11 @@ function lastValidate(){
 function emailValidate(){
   if(!email.value.match(mailRegex)){
     errorMessage ="Format eMail incorrect ! (exemple@test.testexe)";
-    errorEditIf(errorEmail,email,errorMessage);
+    errorEditIfError(errorEmail,email,errorMessage);
     emailChecked=false;
   }
   else{
-    errorEditElse(errorEmail,email);
+    errorEditElseNoError(errorEmail,email);
     emailChecked=true;
   }
 }
@@ -185,11 +185,11 @@ function birthdateValidate(){
   console.log(birthdate.value);
   if(!birthdate.value.match(birthdateRegex)){
     errorMessage="Veuillez remplir votre date de naissance !";
-    errorEditIf(errorBirthdate,birthdate,errorMessage);
+    errorEditIfError(errorBirthdate,birthdate,errorMessage);
     birthdateChecked=false;
   }
   else{
-    errorEditElse(errorBirthdate,birthdate);
+    errorEditElseNoError(errorBirthdate,birthdate);
     birthdateChecked=true;
   }
 }
@@ -197,11 +197,11 @@ function birthdateValidate(){
 function tournamentQuantityValidate(){
   if(!quantityOfTournament.value.match(quantityRegex)){
     errorMessage ="Veuillez indiquer le nombre de tournois auxquels  vous avez participé !";
-    errorEditIf(errorQuantity,quantityOfTournament,errorMessage);
+    errorEditIfError(errorQuantity,quantityOfTournament,errorMessage);
     quantityTournamentChecked=false;
   }
   else{
-    errorEditElse(errorQuantity,quantityOfTournament);
+    errorEditElseNoError(errorQuantity,quantityOfTournament);
     quantityTournamentChecked=true;
   }
 }
@@ -210,11 +210,11 @@ function whichTournamentValidate(){
   let errorTextPossible = true;
   if(!location1.checked && !location2.checked && !location3.checked && !location4.checked && !location5.checked && !location6.checked){
     errorMessage ="Veuillez choisir le tournoi auquel vous souhaitez participer !";
-    errorEditIf(errorWhichTournament,whichTournamentLabel,errorMessage,errorTextPossible);
+    errorEditIfError(errorWhichTournament,whichTournamentLabel,errorMessage,errorTextPossible);
     whichTournamentChecked=false;
   }
   else{
-    errorEditElse(errorWhichTournament,whichTournamentLabel,errorTextPossible);
+    errorEditElseNoError(errorWhichTournament,whichTournamentLabel,errorTextPossible);
     whichTournamentChecked=true;
   }
 }
@@ -223,17 +223,17 @@ function CGUValidate(){
   let errorTextPossible = true;
   if(!checkbox1.checked){
     errorMessage ="Veuillez accepter les Conditions Générales d'Utilisation";
-    errorEditIf(errorCheckbox1,checkbox2Label,errorMessage,errorTextPossible);
+    errorEditIfError(errorCheckbox1,checkbox2Label,errorMessage,errorTextPossible);
     CGUChecked=false;
   }
   else{
-    errorEditElse(errorCheckbox1,checkbox2Label,errorTextPossible);
+    errorEditElseNoError(errorCheckbox1,checkbox2Label,errorTextPossible);
     CGUChecked=true;
   }
 }
 
 //fonction pour rendre actif ( et donc surligner en rouge ) uniquement le lien sur lequel on click
-function navBarFunction(idClicked){
+function navBarClick(idClicked){
   let linkTab = document.querySelectorAll(".main-navbar a"); //recuperation de tout les liens de la navBar
   for(let i=0;i<linkTab.length;i++){ 
     linkTab[i].classList.remove("active");    
@@ -253,6 +253,28 @@ function locationCheckboxFunction(idLocation){
   whichTournamentValidate(idClicked);
 }
 
+// Bouton navBar responsive
+let navBarIcon = document.querySelector(".fa-bars");
+let topnav = document.querySelector(".topnav");
+let navBarLinks = document.querySelector(".main-navbar");
+let navBarLink1 = document.querySelector("#navBarLink1 span");
+let navBarLink4 = document.querySelector("#navBarLink4 span");
+let isNavBarIconClicked = false;
+
+function navBarIconClick(){
+  if(isNavBarIconClicked){
+    navBarLinks.style.display="none";
+    isNavBarIconClicked = false;
+  }
+  else{
+    topnav.style.flexDirection="column"
+    navBarLinks.style.display="flex";
+    navBarLink1.firstChild.data="Détails";
+    navBarLink4.firstChild.data="Évènements";
+    isNavBarIconClicked = true;
+  }
+
+}
 
 
 

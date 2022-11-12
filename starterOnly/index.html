@@ -5,7 +5,11 @@
     <title>Reservation</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="stylesheet" href="styles/modal.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  VERSION OBSOLETE !!-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>    
+    <!-- correction erreur favicon.ico -->
+    <link rel="shortcut icon" href="#">
     <link
       href="https://fonts.googleapis.com/css?family=DM+Sans"
       rel="stylesheet"
@@ -16,15 +20,14 @@
       <div class="header-logo">
         <img alt="logo" src="assets/Logo.png" width="auto" height="auto"/>
       </div>
+      <i class="fa-solid fa-bars navBarIcon" onclick="return navBarIconClick()"></i>
       <div class="main-navbar">      
-        <a id="navBarLink0" href="#" onclick="return navBarFunction(id)"><span>Accueil</span></a>
-        <a id="navBarLink1" href="#" onclick="return navBarFunction(id)"><span>Détails de l'évènement</span></a>
-        <a id="navBarLink2" href="#" onclick="return navBarFunction(id)"><span>À propos</span></a>
-        <a id="navBarLink3" href="#" onclick="return navBarFunction(id)"><span>Contact</span></a>
-        <a id="navBarLink4" href="#" onclick="return navBarFunction(id)"><span>Évènements passés</span></a>
-        <!-- <a href="javascript:void(0);" class="icon" onclick="editNav()"> <i class="fa fa-bars"></i> </a> -->
+        <a id="navBarLink0" href="#" onclick="return navBarClick(id)"><span>Accueil</span></a>
+        <a id="navBarLink1" href="#" onclick="return navBarClick(id)"><span>Détails de l'évènement</span></a>
+        <a id="navBarLink2" href="#" onclick="return navBarClick(id)"><span>À propos</span></a>
+        <a id="navBarLink3" href="#" onclick="return navBarClick(id)"><span>Contact</span></a>
+        <a id="navBarLink4" href="#" onclick="return navBarClick(id)"><span>Évènements passés</span></a>
       </div>
-      
     </div>
     <main>
       <div class="hero-section">

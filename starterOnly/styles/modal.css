@@ -33,7 +33,15 @@ img {
 .topnav {
   overflow: hidden;
   margin: 3.5%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
+
+.fa-bars{
+  visibility:hidden;
+}
+
 .header-logo {
     float: left;
 }
@@ -70,7 +78,7 @@ img {
 }
 
 @media screen and (max-width: 768px) {
-  .topnav a {display: none;}
+  .main-navbar{display: none;}
   .topnav a.icon {
     float: right;
     display: block;
@@ -94,7 +102,6 @@ img {
 
 
  @media screen and (max-width: 540px) {
-  .topnav a {display: none;}
   .topnav a.icon {
     float: right;
     display: block;
@@ -103,7 +110,6 @@ img {
 } 
 
 main {
-  height: 70vh;
   font-size: 130%;
   font-weight: bolder;
   color: black;
@@ -188,6 +194,8 @@ main {
 .bground2 button{
   border:none;
   margin:20px;
+  position: absolute;
+  bottom: 5%;
 }
 
 .content,
@@ -203,6 +211,15 @@ main {
   position: relative;
   color: #fff;
   padding-top: 10px;
+}
+
+.content2{
+  height: 80vh;
+  margin: 5% auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .modal-body {
@@ -440,6 +457,7 @@ input[data-error]::after {
   overflow: hidden;
   box-shadow: 0 2px 7px 2px rgba(0, 0, 0, 0.2);
   margin-bottom: 10px;
+  max-height:67vh;
 }
 .hero-content {
   padding: 51px 67px;
@@ -554,9 +572,21 @@ footer {
 
 /* Tablette en mode paysage */
 @media screen and (max-width: 1111px) {
+  body{
+    max-height: 1000px ;
+  }
+
+  .topnav{
+    margin:10px 5px;
+  }
+  
   .topnav a{
-    margin-top: 20px;
+    margin-top: px;
     font-size:18px;
+  }
+
+  .copyrights{
+    margin:10px;
   }
 }
 @media screen and (max-width: 1051px) {
@@ -589,9 +619,30 @@ footer {
 }
 
 @media screen and (max-width: 450px) {
+  .header-logo img{
+    position:relative;
+    left:3%  ;
+  }
+  .topnav{
+    flex-direction: row;
+    justify-content: space-between;
+    position: relative;
+    align-items: initial;
+  }
+  .navBarIcon{
+    position: fixed;
+    top:4%;
+    right:10%;
+  }
   body{
     height: 100vh;
   }
+
+  .fa-bars{
+    color:red;
+    visibility: initial;
+  }
+
   .hero-section{
     margin-top: 20px;
     width: 90vw;
@@ -606,7 +657,7 @@ footer {
   }
   .hero-headline{
     width: 100%;
-    font-size: 2rem;
+    font-size: 1.6rem;
     font-weight: 600;
   }
   .hero-text{
@@ -616,29 +667,47 @@ footer {
     margin: 10px 0;
   }
   .content2{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     height: 90vh;
     margin-top: 15%;
-  }
-  .closeBtn{
-    position: absolute;
-    bottom: 0;
   }
 }
 
 @media screen and (max-width:400px){
   .content{
     margin: 0;
-    height: 100%;
+  }
+  .btn-signup {
+    margin-top: 5px;
+    padding: 7px;
   }
   .modal-body{
     margin: 0;
   }
   .btn-submit{
     padding-bottom: 20px;
+  }
+  .hero-img img{
+    margin-top:20px;
+  }
+  .copyrights {
+    margin-top: 15px;
+  }
+  .topnav{
+    display: flex;
+    flex-direction: row;
+  }
+  .main-navbar{
+    display: none;
+    flex-direction: row;
+    line-height:100%;
+  }
+  .topnav a{
+    font-size:10px ;
+    width: fit-content;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
@@ -667,3 +736,6 @@ footer {
   display: none;
 }
 
+.navBarIcon{
+  float:right;
+}
